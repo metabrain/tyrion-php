@@ -34,6 +34,8 @@
 }
 
 .blog footer {
+  margin-top: 5%;
+  margin-bottom: 2%;
   //min-width: 50%;
   text-align: center;
   display: block;
