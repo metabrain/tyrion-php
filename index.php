@@ -38,7 +38,7 @@ function get_posts() {
 	    }
 	    $it->next(); 
 	}
-	return $posts ;
+	return array_reverse($posts) ;
 }
 
 function markdown_parse($txt) {
