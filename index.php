@@ -1,5 +1,5 @@
 <?php
-require 'flight/Flight.php';
+require 'lib/flight/Flight.php';
 require 'lib/markdown/Michelf/Markdown.php';
 require 'config.php';
 use \Michelf\Markdown;
