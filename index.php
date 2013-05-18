@@ -86,10 +86,16 @@ Flight::route('/year/@year', function($year){
 });
 */
 
-//Load config.php file into memory
+//Default route if the above are not matched
+Flight::route('*', function(){
+   index();
+});
+
+//TODO Load config.php file into memory
 Flight::before('start', function(&$params, &$output){
     // Do something
-	$config["asd"]="sdsa";
+    //$config["asd"]="sdsa";
+    //Doesnt work right now, dunno why.
 });
 
 Flight::start();
