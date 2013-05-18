@@ -1,0 +1,34 @@
+.blog {
+  margin:5%;
+  height: 100%;
+  width: 90%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.blog_container {
+  height: 100%;
+  width: 100%;
+}
+
+.article_preview {
+  margin-top:2em;
+  margin-bottom:2em;
+}
+
+.article_date {
+//  float: left; 
+  white-space:nowrap;
+}
+
+.article_title {
+  text-decoration: none;
+  font-family: 'Lobster', cursive;
+  font-size: 32px;
+  color: red;
+}
+
+//Center images from Markdown
+.article_body img {
+    display:block;
+    margin:auto;
+}

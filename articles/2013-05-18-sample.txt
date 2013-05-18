@@ -1,0 +1,80 @@
+{
+	"title":"The perils of the bleeding edge JDK (or how I learned to hate Maven and IDEs).",
+	"author":"MetaBrain",
+	"date":"09-05-2013",
+	"tag":"Thesis,Java8,JDK8,Maven",
+	"category":"News"
+}
+
+In case I haven't reported already, my thesis revolves around the new Java 8.
+Using JDK8, I'm doing during-the-compilation-AST-transformations using some
+interesting holes in the javac compiler related to the annotation processor and
+the new Java 8 plugin system (that is basically the same thing as the annotation
+	processor).
+
+I've been using some very hacked Ant buildfiles to build all the projects and
+test 'em. Worked fine so far, after many days trying to figure how to
+compile/run all the Java 8 sources without numerous errors everywhere (it's
+	really not trivial!). However, since my advisor uses primarily Maven for
+his projects and I depend on one of them, I figured, *"Why the hell not convert all
+my hacked-together-Ant-supported projects to Maven? **Shouldn't be hard**.*
+
+<img src="/blog2/assets/images/gifs/nope.gif" />
+
+Almost a two day lost. Nonetheless, after all that work, I figured that maybe Maven
+is not that bad, it's just that my Ant-hacks were so specific and unsupported (Eclipse and 	Maven compiler don't support 1.8 Java compliance level yet...) that it took
+longer than expected. Now, I can safelly reconfigure the projects in maybe 5
+minutes because I've been through the burning coals to figure how to do stuff
+properly the first time.
+
+Tips
+----
+
+- If you want to avoid using several parameters on the classpath when compiling
+the program, pack everything into a single jar, both the project AND it's
+dependencies. Using Maven this is trivial (after you figure out the right plugin
+	of course). Shade does this. Add this to your pom.xml plugins:
+
+<pre style="background:#404040;color:#dedede">
+	&lt;plugin>
+		&lt;groupId>org.apache.maven.plugins&lt;/groupId>
+		&lt;artifactId>maven-shade-plugin&lt;/artifactId>
+		&lt;version>1.4&lt;/version>
+		&lt;executions>
+			&lt;execution>
+				&lt;phase>package&lt;/phase>
+				&lt;goals>
+					&lt;goal>shade&lt;/goal>
+				&lt;/goals>
+			&lt;/execution>
+		&lt;/executions>
+	&lt;/plugin>
+</pre>
+
+- Forcing Maven to use the Java 8 compiler, or else it will use the one defined
+in Eclipse. Don't forget to also set the *source* and *target* attributes, else
+it will compile using whatever is on Eclipse (and since Eclipse does not support
+	java 8 yet, maximum it will use is the Java 1.7 specification).
+
+<pre style="background:#404040;color:#dedede">
+	&lt;/plugin>
+		&lt;artifactId>maven-compiler-plugin&lt;/artifactId>
+		&lt;version>3.0&lt;/version>
+		&lt;configuration>
+			&lt;verbose>true&lt;/verbose>
+			&lt;fork>true&lt;/fork>
+			&lt;executable>${JDK_8_JAVAC}&lt;/executable>
+			&lt;source>1.8&lt;/source>
+			&lt;target>1.8&lt;/target>
+		&lt;/configuration>
+	&lt;/plugin>
+</pre>
+
+- Bow down to Maven: You **shall not** avoid the *src/main|test/java*
+convention for source packages. Otherwise, you **will** have a bad time.
+
+All these would be so much easier if the Eclipse recognized Java 8 already... At
+least the Java 1.8 compliance level of project settings... Hopefully, the next
+Eclipse beta should already support this! Can't wait to have that goddly Eclipse
+in-time-compilation with closures. :)
+
