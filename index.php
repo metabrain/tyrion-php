@@ -22,7 +22,9 @@ str_replace(preg_split('/(\r\n?|\n)(\r\n?|\n)/',$contents)[0],"",$contents);
 
 
 function get_posts() {
-	$directory = "./articles/" ; 
+	//include "config.php";
+	//$directory = $config["server_root"]."articles" ; 
+	$directory = "./articles" ; 
 	$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 	$posts = array();
 
