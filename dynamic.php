@@ -1,5 +1,6 @@
 <?php include "config.php" ?>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <div id="blog">
 <script>
 	$(document).ready(function() {
