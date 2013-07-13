@@ -19,7 +19,7 @@ compile/run all the Java 8 sources without numerous errors everywhere (it's
 his projects and I depend on one of them, I figured, *"Why the hell not convert all
 my hacked-together-Ant-supported projects to Maven? **Shouldn't be hard**.*
 
-<img src="/blog2/assets/images/gifs/nope.gif" />
+<img src="nope.gif" />
 
 Almost a two day lost. Nonetheless, after all that work, I figured that maybe Maven
 is not that bad, it's just that my Ant-hacks were so specific and unsupported (Eclipse and 	Maven compiler don't support 1.8 Java compliance level yet...) that it took

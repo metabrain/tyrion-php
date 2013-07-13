@@ -11,12 +11,17 @@
 		$('#blog a').bind('click', bloggify);
 	}
 
+	function fixImages() {
+		$('#blog img').attr('src','<?php echo $config["images"];?>'+$('#blog img').attr('src'));
+	}
+
 	function bloggify(event) {
 		if(event!=null)
 			event.preventDefault();
-		var url = <?php echo $config["server_root"];?>+$(this).attr('href');
+		var url = '<?php echo $config["server_root"];?>'+$(this).attr('href');
 		$(this).removeAttr("onclick");
 		$('#blog').load(url, function() {
+			fixImages();
 			rebind();
 			//alert('Load was performed.');
 		});
