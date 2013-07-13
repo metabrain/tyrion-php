@@ -12,7 +12,9 @@
 	}
 
 	function fixImages() {
-		$('#blog img').attr('src','<?php echo $config["images"];?>'+$('#blog img').attr('src'));
+		$('#blog img').each(function( index ) {
+			$(this).attr('src','<?php echo $config["images"];?>'+$(this).attr('src'));
+		});
 	}
 
 	function bloggify(event) {
