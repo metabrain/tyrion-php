@@ -5,12 +5,12 @@
 <script>
 	$(document).ready(function() {
 		bloggify(null);
-        });
+	});
 
 	function rebind() {
-		$('#blog a').bind('click', bloggify);
+		$('#blog a').not('#ribbon a').bind('click', bloggify);
 	}
-
+ 
 	function fixImages() {
 		$('#blog img').each(function( index ) {
 			$(this).attr('src','<?php echo $config["images"];?>'+$(this).attr('src'));
@@ -30,3 +30,4 @@
 	}
 </script>
 </div>
+

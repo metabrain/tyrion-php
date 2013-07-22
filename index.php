@@ -100,5 +100,6 @@ Flight::before('start', function(&$params, &$output){
     //Doesnt work right now, dunno why.
 });
 
+include('templates/ribbon.html');
 Flight::start();
 ?>
